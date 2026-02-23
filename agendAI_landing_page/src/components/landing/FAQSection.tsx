@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { HelpCircle } from "lucide-react";
 
 const FAQSection = () => {
+    const whatsappUrl = "https://wa.me/5563992060528?text=Ol%C3%A1%20vim%20pelo%20site%20do%20agendai";
     const faqs = [
         {
             question: "Como funciona o atendimento por IA no WhatsApp?",
@@ -90,7 +91,7 @@ const FAQSection = () => {
                             </p>
                             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                                 <a
-                                    href="https://wa.me/6392060528"
+                                    href={whatsappUrl}
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     className="inline-flex items-center space-x-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg font-medium transition-colors">

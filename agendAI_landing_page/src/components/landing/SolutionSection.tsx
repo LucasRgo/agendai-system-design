@@ -7,6 +7,7 @@ type SolutionSectionProps = {
 };
 
 const SolutionSection = ({ onOpenCarousel, offsetStart = 0 }: SolutionSectionProps) => {
+    const whatsappUrl = "https://wa.me/5563992060528?text=Ol%C3%A1%20vim%20pelo%20site%20do%20agendai";
     // Definir todas as imagens na ordem que aparecem no site (esquerda para direita, cima para baixo)
     const allImages = [
         {
@@ -140,7 +141,7 @@ const SolutionSection = ({ onOpenCarousel, offsetStart = 0 }: SolutionSectionPro
                         <Button
                             size="lg"
                             className="bg-gradient-primary hover:opacity-90 text-white shadow-brand"
-                            onClick={() => window.open("https://agendai.io/billing/subscribe/", "_blank")}>
+                            onClick={() => window.open(whatsappUrl, "_blank")}>
                             <Zap className="w-5 h-5 mr-2" />
                             Quero testar agora
                         </Button>

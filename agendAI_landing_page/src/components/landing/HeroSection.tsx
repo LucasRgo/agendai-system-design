@@ -5,25 +5,16 @@ import { useState } from "react";
 
 const HeroSection = () => {
     const [isVideoOpen, setIsVideoOpen] = useState(false);
+    const whatsappUrl = "https://wa.me/5563992060528?text=Ol%C3%A1%20vim%20pelo%20site%20do%20agendai";
 
     return (
         <section className="relative min-h-screen bg-gradient-hero flex items-center pt-28">
             {/* Fixed Header */}
             <header className="fixed top-0 left-0 right-0 z-50 border-b border-border/60 bg-gradient-hero/80 backdrop-blur">
-                <div className="container mx-auto px-4 h-20 flex items-center justify-between">
+                <div className="container mx-auto px-4 h-20 flex items-center justify-start">
                     <a href="/" className="flex items-center space-x-3" aria-label="AgendAI - Página inicial">
                         <img src="/favicon_io/logo_longa.png" alt="AgendAI logo" className="h-10 w-auto" />
                     </a>
-                    <div className="flex-1 max-w-xl w-full ml-6">
-                        <div className="grid grid-cols-2 gap-3">
-                            <Button asChild size="lg" className="w-full bg-secondary text-secondary-foreground hover:bg-secondary/80">
-                                <a href="https://agendai.io/agendamento/" aria-label="Agendar um horário" target="_blank" rel="noopener noreferrer">Agendar</a>
-                            </Button>
-                            <Button asChild size="lg" className="w-full bg-brand-orange text-white hover:bg-brand-orange/90 shadow-brand">
-                                <a href="https://agendai.io/dashboard" aria-label="Sou barbeiro" target="_blank" rel="noopener noreferrer">Sou barbeiro</a>
-                            </Button>
-                        </div>
-                    </div>
                 </div>
             </header>
             {/* Background Pattern */}
@@ -83,7 +74,7 @@ const HeroSection = () => {
                             <Button
                                 size="lg"
                                 className="bg-gradient-primary hover:opacity-90 text-white shadow-brand text-base sm:text-lg py-4 sm:py-6 px-4 sm:px-8 w-full sm:w-auto"
-                                onClick={() => window.open('https://agendai.io/billing/subscribe/', '_blank')}>
+                                onClick={() => window.open(whatsappUrl, "_blank")}>
                                 <Zap className="w-4 h-4 sm:w-5 sm:h-5 mr-2" />
                                 <span className="hidden sm:inline">Teste grátis por 7 dias — sem cartão</span>
                                 <span className="sm:hidden">Teste grátis 7 dias</span>

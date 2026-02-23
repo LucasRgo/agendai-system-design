@@ -160,23 +160,33 @@ const Engineering = () => {
                         Decisões e documentação
                     </h2>
                 </div>
-                <div className="mx-auto grid w-full max-w-4xl gap-6">
+                <div className="mx-auto grid w-full max-w-6xl gap-6 md:grid-cols-2">
                     {engineeringSections.map((section, index) => {
                         const SectionIcon =
                             decisionIcons[
                                 section.id as keyof typeof decisionIcons
                             ] ?? FileText;
+                        const isFeatured = index === 0;
 
                         return (
                             <article
                                 key={section.id}
-                                className="rounded-2xl border border-brand-orange/30 bg-card/70 p-6 shadow-brand backdrop-blur-sm sm:p-8"
+                                className={`rounded-2xl border bg-card/70 p-6 shadow-brand backdrop-blur-sm sm:p-8 ${
+                                    isFeatured
+                                        ? "border-brand-gold/60 bg-gradient-to-br from-brand-orange/10 via-card/80 to-brand-gold/10 ring-1 ring-brand-orange/40 md:col-span-2"
+                                        : "border-brand-orange/30"
+                                }`}
                             >
                                 <div className="mb-5 flex items-start gap-4">
-                                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gradient-primary shadow-brand">
-                                        <SectionIcon className="h-6 w-6 text-white" />
+                                    <div className="flex h-24 w-24 shrink-0 items-center justify-center rounded-xl bg-gradient-primary shadow-brand">
+                                        <SectionIcon className="h-12 w-12 text-white" />
                                     </div>
                                     <div>
+                                        {isFeatured && (
+                                            <Badge className="mb-2 border-brand-gold/50 bg-brand-orange/15 text-brand-gold hover:bg-brand-orange/20">
+                                                Destaque
+                                            </Badge>
+                                        )}
                                         <h3 className="text-xl font-semibold">
                                             {section.title}
                                         </h3>
@@ -190,14 +200,16 @@ const Engineering = () => {
                                         <li key={bullet}>• {bullet}</li>
                                     ))}
                                 </ul>
-                                <Button
-                                    type="button"
-                                    className="mt-5 bg-gradient-primary text-white shadow-brand hover:opacity-95"
-                                    onClick={() => openDocsCarouselAt(index)}
-                                >
-                                    <FileText className="mr-2 h-4 w-4" />
-                                    Ver doc completo
-                                </Button>
+                                <div className=" flex justify-end">
+                                    <Button
+                                        type="button"
+                                        className="bg-gradient-primary text-end text-white shadow-brand hover:opacity-95"
+                                        onClick={() => openDocsCarouselAt(index)}
+                                    >
+                                        <FileText className="mr-2 h-4 w-4" />
+                                        Ver doc completo
+                                    </Button>
+                                </div>
                             </article>
                         );
                     })}
@@ -225,11 +237,11 @@ const Engineering = () => {
                                     className="w-full rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-orange/60"
                                     onClick={() => openDiagramCarouselAt(index)}
                                 >
-                                    <div className="aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/50 bg-muted/30 p-2">
+                                    <div className="aspect-[16/10] w-full overflow-hidden rounded-xl border border-border/50 bg-muted/30">
                                         <img
                                             src={imageSrc}
                                             alt={diagram.title}
-                                            className="h-full w-full rounded-lg object-contain transition-transform duration-300 hover:scale-[1.01]"
+                                            className="h-full w-full object-cover object-center transition-transform duration-300 hover:scale-[1.01]"
                                             loading="lazy"
                                         />
                                     </div>
@@ -265,12 +277,22 @@ const Engineering = () => {
                 open={isDocsCarouselOpen}
                 onOpenChange={setIsDocsCarouselOpen}
             >
-                <DialogContent className="h-[92vh] w-[96vw] max-w-[96vw] border-0 bg-transparent p-0 [&>button]:hidden">
+                <DialogContent
+                    onPointerDownOutside={() => setIsDocsCarouselOpen(false)}
+                    className="h-[92vh] w-[96vw] max-w-[96vw] border-0 bg-transparent p-0 [&>button]:hidden"
+                >
                     <DialogTitle className="sr-only">
                         Documento tecnico: {selectedSection.title}
                     </DialogTitle>
 
-                    <div className="relative flex h-full w-full items-center justify-center overflow-y-auto">
+                    <div
+                        className="relative flex h-full w-full items-center justify-center overflow-y-auto"
+                        onPointerDown={(event) => {
+                            if (event.target === event.currentTarget) {
+                                setIsDocsCarouselOpen(false);
+                            }
+                        }}
+                    >
                         {engineeringSections.length > 1 && (
                             <Button
                                 type="button"

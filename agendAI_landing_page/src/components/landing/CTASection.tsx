@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Zap, CheckCircle, Clock, CreditCard, Gift, Shield, X, Headphones, Settings, Timer } from "lucide-react";
 
 const CTASection = () => {
+    const whatsappUrl = "https://wa.me/5563992060528?text=Ol%C3%A1%20vim%20pelo%20site%20do%20agendai";
     const benefits = [
         { text: "7 dias grátis para testar tudo", icon: Gift },
         { text: "Sem cartão de crédito necessário", icon: Shield },
@@ -70,7 +71,7 @@ const CTASection = () => {
                                 <Button
                                     size="lg"
                                     className="w-full max-w-sm bg-gradient-primary hover:opacity-90 text-white shadow-brand mb-6 text-lg py-6 font-bold btn-shine btn-neon-glow"
-                                    onClick={() => window.open('https://agendai.io/billing/subscribe/', '_blank')}>
+                                    onClick={() => window.open(whatsappUrl, "_blank")}>
                                     <Zap className="w-6 h-6 mr-3 zap-animate" />
                                     TESTE GRÁTIS AGORA
                                 </Button>

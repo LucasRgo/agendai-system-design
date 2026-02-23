@@ -1,5 +1,8 @@
 # Database Design
 
+## Diagrama ERD
+![Entity Relationship Diagram](./diagrams/erd.png)
+
 ## 1. Decisão de modelagem
 **Decisão tomada:** modelo relacional tenant-centric em PostgreSQL, com entidades de negócio separadas por contexto e relacionamento explícito por `tenant_id`.
 

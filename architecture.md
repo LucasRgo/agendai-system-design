@@ -1,5 +1,12 @@
 # Arquitetura do AgendAI
 
+## Diagramas de Arquitetura
+### C4 Context
+![C4 Context](./diagrams/c4-context.png)
+
+### C4 Container
+![C4 Container](./diagrams/c4-container.png)
+
 ## 1. Decisão arquitetural central
 **Decisão tomada:** monólito modular em Django com processamento assíncrono para integrações de alta latência.
 

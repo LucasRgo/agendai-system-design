@@ -1,5 +1,8 @@
 # Infraestrutura e Deploy
 
+## Diagrama de Containers
+![C4 Container](./diagrams/c4-container.png)
+
 ## 1. Decisão de infraestrutura
 **Decisão tomada:** stack containerizada com Docker Compose, separando runtime web, dados, mensageria e workers.
 

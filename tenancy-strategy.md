@@ -1,5 +1,8 @@
 # Estratégia Multi-Tenant
 
+## Diagrama de Isolamento de Dados
+![Tenant Data Model](./diagrams/tenant_data_model.svg)
+
 ## 1. Decisão de tenancy
 **Decisão tomada:** multi-tenant por linha (shared database, shared schema, `tenant_id` em entidades de domínio).
 

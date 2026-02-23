@@ -1,5 +1,18 @@
 # Fluxo de Pagamentos (Stripe + Webhooks)
 
+## Diagrama do Fluxo de Billing
+```mermaid
+flowchart LR
+    A[Tenant inicia upgrade] --> B[Backend cria Checkout Session]
+    B --> C[Stripe Checkout]
+    C --> D[checkout.session.completed]
+    D --> E[Webhook do AgendAI]
+    E --> F[Atualiza Subscription local]
+    F --> G[Enforcement de acesso por assinatura]
+    C --> H[invoice.paid / payment_failed / subscription.updated]
+    H --> E
+```
+
 ## 1. Decisão de billing
 **Decisão tomada:** Stripe como plataforma de cobrança e webhooks como mecanismo principal de convergência de estado financeiro.
 

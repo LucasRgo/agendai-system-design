@@ -1,0 +1,14 @@
+import { createRoot } from "react-dom/client";
+import { BrowserRouter } from "react-router-dom";
+import App from "./App.tsx";
+import "./index.css";
+
+const routerBase = import.meta.env.BASE_URL.endsWith("/")
+  ? import.meta.env.BASE_URL.slice(0, -1)
+  : import.meta.env.BASE_URL;
+
+createRoot(document.getElementById("root")!).render(
+  <BrowserRouter basename={routerBase}>
+    <App />
+  </BrowserRouter>,
+);

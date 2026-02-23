@@ -1,0 +1,29 @@
+flowchart LR
+  classDef actor fill:#f8fafc,stroke:#475569,color:#0f172a,stroke-width:1px;
+  classDef system fill:#0f172a,stroke:#0f172a,color:#ffffff,stroke-width:1.5px;
+  classDef provider fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:1px;
+
+  subgraph People["Pessoas"]
+    direction TB
+    U["Cliente da barbearia"]:::actor
+    O["Owner / Operador"]:::actor
+  end
+
+  subgraph Platform["Sistema"]
+    direction TB
+    A["AgendAI<br/>Plataforma de agendamento e atendimento"]:::system
+  end
+
+  subgraph External["Sistemas externos"]
+    direction TB
+    S["Stripe"]:::provider
+    W["WAHA<br/>WhatsApp Gateway"]:::provider
+    AI["OpenAI"]:::provider
+  end
+
+  U -->|Agenda / conversa| A
+  O -->|Opera painel| A
+
+  A -->|Cobrança e assinatura| S
+  A -->|Mensagens e sessão| W
+  A -->|Processamento conversacional| AI

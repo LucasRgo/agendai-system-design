@@ -1,0 +1,56 @@
+flowchart LR
+  classDef actor fill:#f8fafc,stroke:#475569,color:#0f172a,stroke-width:1px;
+  classDef edge fill:#e0f2fe,stroke:#0284c7,color:#0c4a6e,stroke-width:1px;
+  classDef app fill:#ecfccb,stroke:#4d7c0f,color:#365314,stroke-width:1px;
+  classDef data fill:#fef3c7,stroke:#b45309,color:#78350f,stroke-width:1px;
+  classDef integration fill:#ede9fe,stroke:#6d28d9,color:#4c1d95,stroke-width:1px;
+
+  subgraph Internet["Internet / Externo"]
+    direction TB
+    Owner["Owner / Operador"]:::actor
+    Client["Cliente final"]:::actor
+    Stripe["Stripe"]:::integration
+    OpenAI["OpenAI"]:::integration
+  end
+
+  subgraph Edge["Edge"]
+    direction TB
+    Nginx["Nginx<br/>Reverse Proxy"]:::edge
+  end
+
+  subgraph App["Aplicação"]
+    direction TB
+    Web["Django Web App<br/>(core, scheduling, billing,<br/>whatsapp, assistant, agendamento)"]:::app
+    Worker["Celery Worker"]:::app
+    Beat["Celery Beat"]:::app
+  end
+
+  subgraph Data["Dados"]
+    direction TB
+    PG[("PostgreSQL")]:::data
+    Redis[("Redis")]:::data
+  end
+
+  subgraph Messaging["Mensageria"]
+    direction TB
+    WAHA["WAHA"]:::integration
+  end
+
+  Owner -->|HTTPS| Nginx
+  Client -->|HTTPS| Nginx
+  Nginx -->|HTTP/WSGI| Web
+
+  Web -->|SQL| PG
+  Web -->|Cache / Queue| Redis
+  Worker -->|Queue| Redis
+  Beat -->|Schedules| Redis
+  Worker -->|Read/Write| PG
+
+  Web -->|Payments API| Stripe
+  Stripe -->|Webhook| Web
+
+  Web -->|WhatsApp API| WAHA
+  WAHA -->|Webhook| Web
+
+  Worker -->|LLM tasks| OpenAI
+  Worker -->|Send messages| WAHA

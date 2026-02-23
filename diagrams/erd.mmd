@@ -1,0 +1,59 @@
+erDiagram
+  TENANT ||--o{ WORKING_DAY : has
+  TENANT ||--o{ PROFESSIONAL : has
+  TENANT ||--o{ PATIENT : has
+  TENANT ||--o{ SERVICE : has
+  TENANT ||--o{ APPOINTMENT : has
+  TENANT ||--o{ SUBSCRIPTION : has
+  TENANT ||--|| WHATSAPP_CONFIG : has
+  TENANT ||--o{ WHATSAPP_MESSAGE : has
+  TENANT ||--o{ CONVERSATION_SESSION : has
+  TENANT ||--|| LOYALTY_PROGRAM : has
+  TENANT ||--o{ LOYALTY_CARD : has
+
+  CUSTOMER ||--o{ SUBSCRIPTION : owns
+  PATIENT ||--o{ APPOINTMENT : books
+  SERVICE ||--o{ APPOINTMENT : defines
+  PROFESSIONAL ||--o{ APPOINTMENT : executes
+
+  PATIENT o|--|| LOYALTY_CARD : owns
+  WHATSAPP_CONFIG ||--o{ WHATSAPP_MESSAGE : uses
+  PATIENT o|--o{ WHATSAPP_MESSAGE : relates
+  CONVERSATION_SESSION o|--o{ WHATSAPP_MESSAGE : groups
+
+  TENANT {
+    int id PK
+    string name
+    string slug
+    string phone_number
+  }
+
+  SUBSCRIPTION {
+    int id PK
+    int tenant_id FK
+    int customer_id FK
+    string status
+    string stripe_subscription_id
+  }
+
+  APPOINTMENT {
+    int id PK
+    int tenant_id FK
+    int patient_id FK
+    int professional_id FK
+    int service_id FK
+    date date
+    time time
+    int duration
+  }
+
+  WHATSAPP_MESSAGE {
+    int id PK
+    int tenant_id FK
+    int config_id FK
+    int patient_id FK
+    int conversation_session_id FK
+    string direction
+    string processing_status
+    datetime created_at
+  }

@@ -7,16 +7,6 @@
 - [Database Design](./database-design.md)
 - [Fluxo de Pagamentos](./payments-flow.md)
 
-## Diagramas
-### C4 Context
-![C4 Context](./diagrams/c4-context.png)
-
-### C4 Containers
-![C4 Containers](./diagrams/c4-container.png)
-
-### ERD
-![ERD](./diagrams/erd.png)
-
 ## Problem Statement
 **Decisão tomada:** construir um SaaS de agendamento para barbearias com operação enxuta, orientado a WhatsApp, e com automação suficiente para reduzir dependência de atendimento manual.
 
@@ -235,3 +225,13 @@ Resultado de engenharia:
 - sistema com arquitetura coerente para estágio atual do produto;
 - decisões defendáveis tecnicamente no contexto de equipe enxuta;
 - base sólida para crescimento com refactors incrementais, sem reescrita total.
+
+## Diagramas
+### C4 Context
+![C4 Context](./diagrams/c4-context.png)
+
+### C4 Containers
+![C4 Containers](./diagrams/c4-container.png)
+
+### ERD
+![ERD](./diagrams/erd.png)
